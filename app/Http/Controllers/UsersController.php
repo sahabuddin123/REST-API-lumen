@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-
+use Carbon\Carbon;
 class UsersController extends Controller
-{
+{   
+    public function index(){
+        $user= app('db')->table('users')->get();
+        return response()->json($user);
+    }
    
 
     public function create(Request $request){
@@ -38,6 +42,8 @@ class UsersController extends Controller
             'username' => strtolower(trim($request->input('username'))),
             'email' => strtolower(trim($request->input('full_name'))),
             'password' => app('hash')->make($request->input('password')),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
            ]);
 
             $user = app('db')->table('users')->select('full_name','username','email','password')->where('id', $id)->first();

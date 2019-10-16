@@ -22,6 +22,7 @@ $router->group(
     //router controller
 
     $router->post('/users', 'UsersController@create');
+    $router->get('/users', 'UsersController@index');
 });
 
 
