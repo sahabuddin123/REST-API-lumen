@@ -14,5 +14,10 @@ class ExampleController extends Controller
         //
     }
 
-    //
+    public function index(){
+        return response()->json([
+            'success' => true,
+            'massege' => 'Welcome TO Lumen REST API'
+        ]);
+    }
 }

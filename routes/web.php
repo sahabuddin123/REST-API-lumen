@@ -11,10 +11,28 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    //return $router->app->version();
-    return response()->json([
-        'success' => true,
-        'massege' => 'Welcome TO Lumen REST API'
-    ]);
+
+$router->group(
+    [
+        'prefix' => 'api/v1',
+    ],
+    function () use ($router) {
+    $router->get('/', 'ExampleController@index');
+
+    //router controller
+
+    $router->post('/users', 'UsersController@create');
 });
+
+
+
+
+
+
+// $router->get('/', function () use ($router) {
+//     //return $router->app->version();
+//     return response()->json([
+//         'success' => true,
+//         'massege' => 'Welcome TO Lumen REST API'
+//     ]);
+// });
